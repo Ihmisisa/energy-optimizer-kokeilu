@@ -13,7 +13,7 @@ Home Assistant addon developed to be used as "heating cost optimizer". It is bas
 1. Install the addon (use the link above)
 2. Set latitude/longitude on the addon configuration
 3. Run the addon. This will run the optimization for an "example model" and create folders/files to your HA config folder.
-4.
+4. Check the Addon logs. It should output the simulation results.
 5. Modify /config/energy-optimizer/src/main.py to match your use case.
 6. Add following to your configuration.yaml. This allows sensors to persist over reboots:
 ```yaml
