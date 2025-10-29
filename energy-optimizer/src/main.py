@@ -39,10 +39,10 @@ heatpump_cop = lambda time, cond: min(6, map(cond["temperature_2m"], -22, 6, 2, 
 heatpump_power = lambda cond: min(6.3, map(cond["temperature_2m"], -25, -15, 3.2, 4.8))
 sun_power = lambda cond: cond["shortwave_radiation"]/1000
 
-### Outside temperature is determined by a lambda function
+### Outside temperature is determined by a lambda function from weather data
 out = m.addCapacitance("Out", tempFunc=lambda time,cond: cond["temperature_2m"])
 
-### Rooms/spaces. Name, heat capacity (kWh/C), temp limits, starting temp
+### Rooms/spaces. Name, heat capacity (kWh/C), HARD temp limits , starting temp
 house = m.addCapacitance("House", 12, templimit=(20.5,22), startTemp=T0)
 boiler = m.addCapacitance("Boiler", 10, templimit=(50,80), startTemp=50)
 
