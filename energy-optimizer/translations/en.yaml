@@ -1,0 +1,7 @@
+configuration:
+  lat:
+    name: Latitude
+    description: Latitude of the location. Used for weather forecasts.
+  lon:
+    name: Longitude
+    description: Longitude of the location. Used for weather forecasts.

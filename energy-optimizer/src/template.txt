@@ -1,0 +1,11 @@
+  # Template to generate sensors to persist state over reboot.
+  - sensor:
+      name: Energy Opt $sensor
+      command: "cat /config/energy-optimizer/output/${sensor}.json"
+      unique_id: energy-opt-$sensor
+      value_template: '{{ value_json["state"] }}'
+      json_attributes_path: attributes
+      json_attributes:
+      - data
+      command_timeout: 60
+      scan_interval: 0:01:00

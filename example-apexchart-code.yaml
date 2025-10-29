@@ -1,0 +1,97 @@
+type: custom:apexcharts-card
+section_mode: true
+grid_options:
+  rows: 8
+  columns: 24
+graph_span: 46h
+show:
+  last_updated: true
+header:
+  title: Temperatures
+  show: true
+  show_states: true
+  colorize_states: true
+span:
+  start: hour
+  offset: "-12h"
+apex_config:
+  forceNiceScale: true
+  legend:
+    show: true
+  xaxis:
+    tooltip:
+      enabled: false
+yaxis:
+  - id: right
+    opposite: true
+    decimals: 1
+    apex_config:
+      forceNiceScale: true
+      title:
+        text: °C
+  - id: left
+    decimals: 1
+    apex_config:
+      forceNiceScale: true
+      title:
+        text: kWh/kW
+now:
+  show: true
+  label: Now
+series:
+  - entity: sensor.energy_opt_immersionheater
+    name: ImmersionHeater
+    show:
+      in_header: before_now
+    yaxis_id: left
+    stack_group: power
+    type: line
+    unit: kW
+    data_generator: |
+      return entity.attributes.data.map((d, index) => {
+        return [d[0]*1000, d[2]];
+      });
+  - entity: sensor.energy_opt_heatpump
+    name: Heatpump
+    show:
+      in_header: before_now
+    yaxis_id: left
+    stack_group: power
+    type: line
+    unit: kW
+    data_generator: |
+      return entity.attributes.data.map((d, index) => {
+        return [d[0]*1000, d[2]];
+      });
+  - entity: sensor.energy_opt_house
+    name: Losses
+    show:
+      in_header: before_now
+    type: line
+    unit: kW
+    yaxis_id: left
+    data_generator: |
+      return entity.attributes.data.map((d, index) => {
+        return [d[0]*1000, d[2]];
+      });
+  - entity: sensor.energy_opt_house
+    name: Predicted
+    show:
+      in_header: before_now
+    type: line
+    unit: °C
+    yaxis_id: right
+    data_generator: |
+      return entity.attributes.data.map((d, index) => {
+        return [d[0]*1000, d[1]];
+      });
+  - entity: sensor.average_temperature_inside
+    name: Measured temp
+    show:
+      in_header: true
+      extremas: false
+      legend_value: true
+    type: line
+    yaxis_id: right
+    extend_to: false
+    float_precision: 2

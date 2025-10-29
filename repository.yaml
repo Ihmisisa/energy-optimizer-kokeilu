@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: Energy Optimizer
+url: 'https://github.com/T3m3z/energy-optimizer'
+maintainer: T3m3z
